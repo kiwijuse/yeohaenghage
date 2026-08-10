@@ -17,10 +17,6 @@ class ApiClient {
 
   ApiClient._internal();
 
-  /// 리프레시마저 실패했을 때 앱이 할 일(세션 정리 후 로그인 화면으로).
-  /// 이 클래스가 화면 전환을 직접 알 필요는 없으므로 콜백으로 위임한다.
-  void Function()? onSessionExpired;
-
   /// 현재 갱신이 진행 중인지.
   bool _is_refreshing = false;
 
@@ -71,12 +67,10 @@ class ApiClient {
   Future<http.Response> get(Uri url, {Map<String, String>? headers}) async {
     var response = await http.get(url, headers: await _getHeaders(headers));
 
-    if (response.statusCode == 401) {
-      if (await handleTokenRefresh()) {
-        response = await http.get(url, headers: await _getHeaders(headers));
-      } else {
-        onSessionExpired?.call();
-      }
+    // 갱신에 성공하면 새 토큰으로 한 번만 재시도한다.
+    // 갱신마저 실패한 경우의 세션 정리는 구현되지 않은 채로 남았다. (README 아쉬운 점 참고)
+    if (response.statusCode == 401 && await handleTokenRefresh()) {
+      response = await http.get(url, headers: await _getHeaders(headers));
     }
 
     return _sanitizeHttpResponse(response);
@@ -85,12 +79,8 @@ class ApiClient {
   Future<http.Response> post(Uri url, {Map<String, String>? headers, Object? body}) async {
     var response = await http.post(url, headers: await _getHeaders(headers), body: body);
 
-    if (response.statusCode == 401) {
-      if (await handleTokenRefresh()) {
-        response = await http.post(url, headers: await _getHeaders(headers), body: body);
-      } else {
-        onSessionExpired?.call();
-      }
+    if (response.statusCode == 401 && await handleTokenRefresh()) {
+      response = await http.post(url, headers: await _getHeaders(headers), body: body);
     }
 
     return _sanitizeHttpResponse(response);

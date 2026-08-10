@@ -81,13 +81,9 @@ Future<bool> handleTokenRefresh() async {
 Future<http.Response> get(Uri url, {Map<String, String>? headers}) async {
   var response = await http.get(url, headers: await _getHeaders(headers));
 
-  if (response.statusCode == 401) {
-    if (await handleTokenRefresh()) {
-      // 갱신에 성공했으면 새 토큰으로 한 번만 재시도
-      response = await http.get(url, headers: await _getHeaders(headers));
-    } else {
-      onSessionExpired?.call();
-    }
+  // 갱신에 성공하면 새 토큰으로 한 번만 재시도
+  if (response.statusCode == 401 && await handleTokenRefresh()) {
+    response = await http.get(url, headers: await _getHeaders(headers));
   }
 
   return _sanitizeHttpResponse(response);
@@ -167,9 +163,9 @@ final new_headers = Map<String, String>.from(response.headers)..remove('content-
 
 ## 아쉬운 점
 
-**갱신마저 실패했을 때의 처리가 비어 있었습니다.**
+**갱신마저 실패했을 때의 처리가 비어 있습니다.**
 
-실제 출시 빌드에서 이 자리는 빈 함수였습니다. 리프레시 토큰까지 만료되면 아무 일도 일어나지 않았고, 사용자는 계속 401을 받는 앱을 보게 됩니다. 여기 실린 코드에서는 `onSessionExpired` 콜백으로 정리해 뒀지만, **원래 코드에는 그 연결이 없었다는 점을 그대로 적어 둡니다.**
+리프레시 토큰까지 만료되면 아무 일도 일어나지 않습니다. 세션을 정리하고 로그인 화면으로 보내야 하는데, 그 자리가 빈 함수로 남아 있었습니다. 사용자는 계속 401만 받는 앱을 보게 됩니다. 발췌본에서도 없는 코드를 지어내지 않고 **비어 있는 그대로** 두었습니다.
 
 이 문제가 오래 남아 있었던 이유는 단순합니다. **터졌을 때 알 방법이 없었기 때문입니다.** 크래시 리포팅이 붙어 있지 않았고, 로그는 릴리스 빌드에서 아무 데도 모이지 않았습니다. 갱신 실패는 앱이 죽지 않는 조용한 실패라 사용자 제보가 오기 전까지 존재 자체를 몰랐습니다.
 
