@@ -1,0 +1,52 @@
+# ─────────────────────────────────────────────
+# 자격 증명 · 서명 키 — 어떤 경우에도 커밋 금지
+# ─────────────────────────────────────────────
+*.jks
+*.keystore
+*.pem
+*.ppk
+*.p8
+*.p12
+*.mobileprovision
+key.properties
+local.properties
+
+# Firebase / Google
+google-services.json
+GoogleService-Info.plist
+firebase_options.dart
+firebase.json
+.firebaserc
+
+# 환경 변수
+.env
+.env.*
+*.secret
+secrets.*
+
+# ─────────────────────────────────────────────
+# 빌드 산출물
+# ─────────────────────────────────────────────
+build/
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+*.apk
+*.aab
+*.ipa
+
+# ─────────────────────────────────────────────
+# 에디터 · OS
+# ─────────────────────────────────────────────
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# ─────────────────────────────────────────────
+# 작업용 원본 (레포에 포함하지 않음)
+# ─────────────────────────────────────────────
+_raw/
+*.mp4
