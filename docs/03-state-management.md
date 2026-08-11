@@ -109,6 +109,11 @@ class ReservationProvider with ChangeNotifier {
 
 ## 03 · 플래그를 종류별로 쪼개기
 
+<div align="center">
+<img src="../assets/demos/host_revenue.gif" width="260" /><br>
+<sub>호스트 정산 화면 · 예약이 바뀔 때마다 수익 · 달력 · 숙소 관리가 함께 갱신되어야 합니다</sub>
+</div>
+
 호스트 콘솔에서는 플래그를 하나만 두면 문제가 생깁니다. 방 이름 하나를 고쳤는데 이벤트 목록과 예약 현황까지 전부 다시 불러옵니다. 호스트 쪽 응답은 무거운 편이라 이 낭비가 눈에 띄었습니다.
 
 그래서 **무엇이 바뀌었는지를 종류별로** 들고 있습니다.

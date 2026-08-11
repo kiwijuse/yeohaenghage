@@ -232,9 +232,11 @@ bool isPointInPolygon(double lat, double lng, List<LatLng> polygon) {
 싼 검사를 먼저 하고 비싼 연산을 뒤로 미루는 게 전부입니다. 대부분의 점은 경계 상자에서 탈락하므로 삼각비 없는 뺄셈 몇 번으로 끝납니다.
 
 <div align="center">
-<img src="../assets/screens/tile_debug.png" width="280" /><br>
-<sub>개발 중 격자를 화면에 그려 검증하던 모습 · 실제 앱에서는 보이지 않습니다</sub>
+<img src="../assets/demos/map_tiling.gif" width="300" /><br>
+<sub>개발 중 격자와 타일 번호를 화면에 그려 검증하던 모습 · 실제 앱에서는 보이지 않습니다</sub>
 </div>
+
+지도를 움직이면 화면에 걸치는 타일 번호가 바뀝니다. 하단의 "지도에 표시된 숙소 N개"가 바로 이 다각형 필터를 통과한 개수입니다. 개발 중에는 이렇게 격자와 번호를 직접 그려 놓고, **경계에 걸친 타일이 빠지지 않는지**를 눈으로 확인했습니다.
 
 ---
 

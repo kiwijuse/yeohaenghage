@@ -55,6 +55,13 @@
 - **동행** — 오늘 갈 동행을 찾거나 직접 만들고, 신청·수락을 거쳐 자동으로 만들어진 그룹 채팅에서 모입니다. 처음 만나는 사이인 만큼 후기 시스템 · 신청 수락제 · 최소 정보 원칙을 함께 뒀습니다.
 - **숙소** — 직접 검증한 게스트하우스만 올립니다. 숙소를 고르기 전에 공간과 호스트를 먼저 보여주는 쪽으로 설계했습니다.
 
+<div align="center">
+<img src="assets/demos/onboarding.gif" width="240" /><br>
+<sub>첫 실행 화면 · 요소를 한꺼번에 띄우지 않고 시차를 두어 읽는 순서를 만들었습니다</sub>
+</div>
+
+설명이 필요한 서비스라 **첫 화면에서 개념이 전달되지 않으면 사용자는 그냥 나갑니다.** 그래서 온보딩에 쓴 애니메이션은 장식이 아니라 문장을 순서대로 읽히게 하려는 장치였습니다. → [UX 디테일](docs/08-ux-details.md#06--온보딩)
+
 게스트가 쓰는 앱과 호스트가 쓰는 앱이 **한 바이너리 안에 같이 들어 있습니다.** 계정 권한에 따라 하단 탭 다섯 개가 통째로 바뀝니다.
 
 <div align="center">
@@ -139,12 +146,19 @@
 
 ### 동작 화면
 
+아래 넷은 **실제 앱을 녹화한 화면**입니다. 나머지 둘은 녹화본이 남아 있지 않아 디자인 원본으로 재구성했습니다.
+
 <div align="center">
 <table>
 <tr>
-<td align="center" width="33%"><img src="assets/demos/travel.gif" width="200" /><br><sub><b>숙소 탐색 → 예약</b><br>검색 · 날짜 · 지도 · 상세 · 객실</sub></td>
-<td align="center" width="33%"><img src="assets/demos/accompany.gif" width="200" /><br><sub><b>동행 만들기</b><br>지역·날짜 → 소개 → 계획 → 등록</sub></td>
-<td align="center" width="33%"><img src="assets/demos/community.gif" width="200" /><br><sub><b>커뮤니티 · 지도</b><br>피드 · 글쓰기 · 태그</sub></td>
+<td align="center" width="33%"><img src="assets/demos/onboarding.gif" width="230" /><br><sub><b>온보딩 → 로그인</b><br>브랜드 인트로 · 소셜 로그인 4종</sub></td>
+<td align="center" width="33%"><img src="assets/demos/travel_map.gif" width="230" /><br><sub><b>지도 탐색</b><br>마커 · 숙소 카드 · 가시 영역 카운트</sub></td>
+<td align="center" width="33%"><img src="assets/demos/gh_info.gif" width="230" /><br><sub><b>숙소 상세</b><br>사진 · 편의시설 · 환불 규정</sub></td>
+</tr>
+<tr>
+<td align="center"><img src="assets/demos/host_revenue.gif" width="230" /><br><sub><b>호스트 정산</b><br>주차별 정산 · 수수료 · 입금 예정</sub></td>
+<td align="center"><img src="assets/demos/accompany.gif" width="230" /><br><sub><b>동행 만들기</b> <sub>(디자인)</sub><br>지역·날짜 → 소개 → 계획 → 등록</sub></td>
+<td align="center"><img src="assets/demos/community.gif" width="230" /><br><sub><b>커뮤니티 글쓰기</b> <sub>(디자인)</sub><br>피드 · 글쓰기 · 태그</sub></td>
 </tr>
 </table>
 </div>
@@ -165,9 +179,11 @@
 > 줌에 따라 칸 크기를 바꾸는 적응형 격자를 일부러 쓰지 않았습니다. 같은 지역이 줌마다 다른 ID를 가지면 캐시 재사용률이 무너지기 때문입니다. 고정 격자는 같은 숙소가 항상 같은 타일에 귀속됩니다.
 
 <div align="center">
-<img src="assets/screens/tile_debug.png" width="260" /><br>
-<sub>개발 중 격자를 화면에 그려 검증하던 모습 · 실제 앱에서는 보이지 않습니다</sub>
+<img src="assets/demos/map_tiling.gif" width="260" /><br>
+<sub>개발 중 격자와 타일 번호를 화면에 그려 검증하던 모습 · 실제 앱에서는 보이지 않습니다</sub>
 </div>
+
+지도를 움직이면 화면에 걸친 타일 번호가 바뀌고, 그중 **캐시에 없는 것만** 서버로 나갑니다. 위 화면의 하단에 보이는 "지도에 표시된 숙소 N개"는 타일 단위로 받아온 데이터 중 실제 화면 다각형 안에 들어오는 것만 센 값입니다.
 
 → [자세히 보기](docs/02-map-tiling.md) &nbsp;·&nbsp; [코드](src/map_tiling.dart)
 
