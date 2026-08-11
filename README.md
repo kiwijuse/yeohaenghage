@@ -33,7 +33,12 @@
 
 ## 앱을 열면
 
-화면을 나열하는 대신 **사용자가 지나가는 순서대로** 따라가 보겠습니다. 아래 움직이는 화면 중 절반은 실제 앱 녹화이고, 나머지는 녹화본이 남지 않아 디자인 원본으로 재구성했습니다.
+화면을 나열하는 대신 **사용자가 지나가는 순서대로** 따라가 보겠습니다.
+
+> [!NOTE]
+> 서비스가 멈춘 뒤라 서버가 내려가 있어, 앱을 그대로 켜면 빈 화면만 나옵니다.
+> 그래서 아래 화면 중 상당수는 **HTTP 클라이언트를 목 서버로 바꿔 끼우고 실기기에서 다시 띄워** 찍었습니다.
+> `(실기기)` 표시가 붙은 것이 그렇게 찍은 것이고, 나머지는 남아 있던 녹화본이나 디자인 원본입니다.
 
 ### 처음 만나는 화면
 
@@ -60,7 +65,7 @@
 
 <table>
 <tr>
-<td width="34%"><img src="assets/demos/search.gif" width="100%" /></td>
+<td width="34%"><img src="assets/demos/travel_list.gif" width="100%" /><br><sub align="center">(실기기)</sub></td>
 <td width="34%"><img src="assets/demos/travel_map.gif" width="100%" /></td>
 <td valign="top">
 
@@ -96,7 +101,7 @@
 
 <table>
 <tr>
-<td width="34%"><img src="assets/demos/accompany.gif" width="100%" /></td>
+<td width="34%"><img src="assets/demos/accompany.gif" width="100%" /><br><sub align="center">(실기기)</sub></td>
 <td valign="top">
 
 이 앱의 핵심입니다. 오늘 갈 동행을 찾거나 직접 만들고, 신청·수락을 거쳐 **자동으로 만들어진 그룹 채팅**에서 모입니다.
@@ -113,7 +118,7 @@
 
 <table>
 <tr>
-<td width="34%"><img src="assets/demos/community.gif" width="100%" /></td>
+<td width="34%"><img src="assets/demos/community.gif" width="100%" /><br><sub align="center">(실기기)</sub></td>
 <td width="34%"><img src="assets/demos/schedule.gif" width="100%" /></td>
 <td valign="top">
 
