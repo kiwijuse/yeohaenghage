@@ -45,7 +45,9 @@
 <table>
 <tr>
 <td width="34%"><img src="assets/demos/onboarding.gif" width="100%" /></td>
-<td valign="top">
+<td valign="middle">
+
+<br>
 
 `혼자 떠나는 게 이상한 거 아니에요.`
 `하루를 마무리할 때쯤, 누군가 말을 걸어요.`
@@ -67,13 +69,17 @@
 <tr>
 <td width="34%"><img src="assets/demos/travel_list.gif" width="100%" /><br><sub align="center">(실기기)</sub></td>
 <td width="34%"><img src="assets/demos/travel_map.gif" width="100%" /></td>
-<td valign="top">
+<td valign="middle">
+
+<br>
 
 목록과 지도, 두 갈래로 찾습니다.
 
 지도 쪽이 이 앱에서 **기술적으로 가장 많이 손을 댄 화면**입니다. 손가락이 움직이는 내내 카메라 콜백이 오는데, 그때마다 "이 화면의 숙소 주세요"라고 물으면 드래그 한 번에 요청이 수십 번 나갑니다.
 
 한반도를 **2,066개의 고정 격자**로 나눠, 연속적인 좌표 문제를 정수 집합 문제로 바꿨습니다.
+
+실기기에서 **16번 드래그하며 재보니 서버 호출은 1번**, 필요한 타일 64개 중 61개를 캐시가 받아냈습니다.
 
 → [지도 타일링](docs/02-map-tiling.md)
 
@@ -87,7 +93,9 @@
 <tr>
 <td width="34%"><img src="assets/demos/gh_info.gif" width="100%" /></td>
 <td width="34%"><img src="assets/demos/booking.gif" width="100%" /></td>
-<td valign="top">
+<td valign="middle">
+
+<br>
 
 숙소를 고르기 전에 **공간과 호스트를 먼저** 보여주는 쪽으로 설계했습니다. 사진 · 편의시설 · 환불 규정 · 리뷰가 한 화면 안의 탭으로 붙어 있습니다.
 
@@ -102,7 +110,9 @@
 <table>
 <tr>
 <td width="34%"><img src="assets/demos/accompany.gif" width="100%" /><br><sub align="center">(실기기)</sub></td>
-<td valign="top">
+<td valign="middle">
+
+<br>
 
 이 앱의 핵심입니다. 오늘 갈 동행을 찾거나 직접 만들고, 신청·수락을 거쳐 **자동으로 만들어진 그룹 채팅**에서 모입니다.
 
@@ -120,7 +130,9 @@
 <tr>
 <td width="34%"><img src="assets/demos/community.gif" width="100%" /><br><sub align="center">(실기기)</sub></td>
 <td width="34%"><img src="assets/demos/schedule.gif" width="100%" /></td>
-<td valign="top">
+<td valign="middle">
+
+<br>
 
 커뮤니티는 여행지에서 사진을 잔뜩 올리는 곳입니다. 네트워크가 불안정한 상태에서 사진 열 장을 걸어 놓고 앱을 나가는 게 **정상적인 사용 패턴**이라, 업로드를 앱 생명주기 밖으로 빼고 큐 자체를 디스크에 저장했습니다.
 
@@ -138,7 +150,9 @@
 <tr>
 <td width="34%"><img src="assets/demos/host_register.gif" width="100%" /></td>
 <td width="34%"><img src="assets/demos/host_revenue.gif" width="100%" /></td>
-<td valign="top">
+<td valign="middle">
+
+<br>
 
 게스트 앱과 호스트 앱이 **한 바이너리 안에** 들어 있습니다. 권한이 바뀌면 하단 탭 다섯 개가 통째로 교체됩니다.
 
@@ -199,10 +213,16 @@
 <br>
 <table>
 <tr>
-<td align="center" width="25%"><img src="assets/screens/accompany.png" width="165" /><br><sub><b>동행 목록</b><br>오늘 동행 · 약속 동행</sub></td>
+<td align="center" width="25%"><img src="assets/screens/accompany.png" width="165" /><br><sub><b>오늘 동행</b><br>마감 임박 · 남은 시간</sub></td>
+<td align="center" width="25%"><img src="assets/screens/accompany_promise.png" width="165" /><br><sub><b>약속 동행</b><br>날짜 · 모집 형태 필터</sub></td>
 <td align="center" width="25%"><img src="assets/screens/accompany_apply.png" width="165" /><br><sub><b>동행 신청</b></sub></td>
 <td align="center" width="25%"><img src="assets/screens/community.png" width="165" /><br><sub><b>커뮤니티 피드</b></sub></td>
-<td align="center" width="25%"><img src="assets/screens/community_write.png" width="165" /><br><sub><b>글쓰기</b><br>임시저장 · 사진</sub></td>
+</tr>
+<tr>
+<td align="center"><img src="assets/screens/community2.png" width="165" /><br><sub><b>피드 스크롤</b><br>사진 유무 · 좋아요 편차</sub></td>
+<td align="center"><img src="assets/screens/community_write.png" width="165" /><br><sub><b>글쓰기</b><br>임시저장 · 사진</sub></td>
+<td align="center"><img src="assets/screens/travel_list2.png" width="165" /><br><sub><b>숙소 목록 스크롤</b></sub></td>
+<td align="center"><img src="assets/screens/message.png" width="165" /><br><sub><b>내 동행</b><br>신청 수 · 참여 인원</sub></td>
 </tr>
 <tr>
 <td align="center"><img src="assets/screens/community_tag.png" width="165" /><br><sub><b>태그</b></sub></td>
