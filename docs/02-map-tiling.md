@@ -242,7 +242,7 @@ bool isPointInPolygon(double lat, double lng, List<LatLng> polygon) {
 
 ## 05 · 실제로 얼마나 줄었나
 
-글로만 쓰면 믿기 어려우니 직접 재봤습니다. **Galaxy S21+ 실기기**에 앱을 올리고, 지도 화면에서 좌우로 **16번 드래그**하면서 로그를 수집했습니다.
+글로만 쓰면 믿기 어려우니 직접 재봤습니다. 지도 화면에서 좌우로 **16번 드래그**하면서 로그를 수집했습니다.
 
 <div align="center">
 <img src="../assets/demos/map_drag.gif" width="280" /><br>

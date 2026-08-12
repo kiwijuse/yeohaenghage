@@ -27,7 +27,7 @@
 > [!NOTE]
 > **프론트엔드를 맡은 사람이 쓴 회고입니다.**
 > 상용·팀 프로젝트라 앱 소스 전체는 담지 않았고, 설계 의도가 드러나는 부분만 시크릿을 걷어내고 발췌했습니다.
-> 같은 프로젝트의 서버 이야기는 [pill27211/align-retrospective](https://github.com/pill27211/align-retrospective)에 따로 있습니다.
+> 같은 프로젝트의 서버 이야기는 <a href="https://github.com/pill27211/align-retrospective" target="_blank" rel="noopener">pill27211/align-retrospective</a>에 따로 있습니다.
 
 ---
 
@@ -36,9 +36,7 @@
 화면을 나열하는 대신 **사용자가 지나가는 순서대로** 따라가 보겠습니다.
 
 > [!NOTE]
-> 서비스가 멈춘 뒤라 서버가 내려가 있어, 앱을 그대로 켜면 빈 화면만 나옵니다.
-> 그래서 아래 화면 중 상당수는 **HTTP 클라이언트를 목 서버로 바꿔 끼우고 실기기에서 다시 띄워** 찍었습니다.
-> `(실기기)` 표시가 붙은 것이 그렇게 찍은 것이고, 나머지는 남아 있던 녹화본이나 디자인 원본입니다.
+> 일부 화면은 재연을 위해 목 서버를 붙여 다시 띄운 뒤 촬영했습니다.
 
 ### 처음 만나는 화면
 
@@ -67,7 +65,7 @@
 
 <table>
 <tr>
-<td width="34%"><img src="assets/demos/travel_list.gif" width="100%" /><br><sub align="center">(실기기)</sub></td>
+<td width="34%"><img src="assets/demos/travel_list.gif" width="100%" /></td>
 <td width="34%"><img src="assets/demos/travel_map.gif" width="100%" /></td>
 <td valign="middle">
 
@@ -79,7 +77,7 @@
 
 한반도를 **2,066개의 고정 격자**로 나눠, 연속적인 좌표 문제를 정수 집합 문제로 바꿨습니다.
 
-실기기에서 **16번 드래그하며 재보니 서버 호출은 1번**, 필요한 타일 64개 중 61개를 캐시가 받아냈습니다.
+직접 재보니 **16번 드래그에 서버 호출은 1번**, 필요한 타일 64개 중 61개를 캐시가 받아냈습니다.
 
 → [지도 타일링](docs/02-map-tiling.md)
 
@@ -109,7 +107,7 @@
 
 <table>
 <tr>
-<td width="34%"><img src="assets/demos/accompany.gif" width="100%" /><br><sub align="center">(실기기)</sub></td>
+<td width="34%"><img src="assets/demos/accompany.gif" width="100%" /></td>
 <td valign="middle">
 
 <br>
@@ -128,7 +126,7 @@
 
 <table>
 <tr>
-<td width="34%"><img src="assets/demos/community.gif" width="100%" /><br><sub align="center">(실기기)</sub></td>
+<td width="34%"><img src="assets/demos/community.gif" width="100%" /></td>
 <td width="34%"><img src="assets/demos/schedule.gif" width="100%" /></td>
 <td valign="middle">
 
@@ -182,7 +180,7 @@
 <table>
 <tr>
 <td align="center" width="25%"><img src="assets/screens/travel_home.png" width="165" /><br><sub><b>숙소 목록</b><br>거리순 · 필터 · 찜</sub></td>
-<td align="center" width="25%"><img src="assets/screens/travel_search.png" width="165" /><br><sub><b>검색</b><br>최근 검색 · 인기 순위</sub></td>
+<td align="center" width="25%"><img src="assets/screens/travel_search.png" width="165" /><br><sub><b>검색</b><br>최근 검색</sub></td>
 <td align="center" width="25%"><img src="assets/screens/search_input.png" width="165" /><br><sub><b>검색 결과</b></sub></td>
 <td align="center" width="25%"><img src="assets/screens/travel_date.png" width="165" /><br><sub><b>날짜 선택</b></sub></td>
 </tr>
@@ -219,7 +217,7 @@
 <td align="center" width="25%"><img src="assets/screens/community.png" width="165" /><br><sub><b>커뮤니티 피드</b></sub></td>
 </tr>
 <tr>
-<td align="center"><img src="assets/screens/community2.png" width="165" /><br><sub><b>피드 스크롤</b><br>사진 유무 · 좋아요 편차</sub></td>
+<td align="center"><img src="assets/screens/community2.png" width="165" /><br><sub><b>피드 스크롤</b></sub></td>
 <td align="center"><img src="assets/screens/community_write.png" width="165" /><br><sub><b>글쓰기</b><br>임시저장 · 사진</sub></td>
 <td align="center"><img src="assets/screens/travel_list2.png" width="165" /><br><sub><b>숙소 목록 스크롤</b></sub></td>
 <td align="center"><img src="assets/screens/message.png" width="165" /><br><sub><b>내 동행</b><br>신청 수 · 참여 인원</sub></td>
@@ -245,7 +243,7 @@
 </tr>
 <tr>
 <td align="center"><img src="assets/screens/schedule_date.png" width="165" /><br><sub><b>일정 날짜</b></sub></td>
-<td align="center" colspan="3"><img src="assets/demos/calendar.gif" width="165" /><br><sub><b>호스트 예약 달력</b> &nbsp;— &nbsp;월 이동 · 입·퇴실 일정 · 기간 하이라이트 <sub>(실제 앱 녹화)</sub></sub></td>
+<td align="center" colspan="3"><img src="assets/demos/calendar.gif" width="165" /><br><sub><b>호스트 예약 달력</b> &nbsp;— &nbsp;월 이동 · 입·퇴실 일정 · 기간 하이라이트</sub></td>
 </tr>
 </table>
 </details>
@@ -317,11 +315,24 @@
 </tr>
 </table>
 
+<br>
+
+### 그중 지도 이야기
+
+여섯 개 중 가장 오래 붙잡고 있었던 건 첫 번째, 지도였습니다. 나머지는 원인을 찾으면 고칠 방법이 비교적 분명했는데, 지도는 **"무엇을 캐시의 단위로 삼을 것인가"**부터 정해야 했기 때문입니다.
+
+화면 경계는 연속적인 실수라 그대로는 캐시 키가 되지 못합니다. 그래서 한반도에 고정 격자를 깔고 좌표를 **정수 번호**로 바꿨습니다. 그러고 나니 "이미 받아온 영역인가"가 집합 연산 한 번으로 풀렸습니다.
+
+만들면서 이게 제대로 도는지 눈으로 봐야 했는데, 격자는 눈에 보이지 않는 개념이라 확인할 방법이 없었습니다. 그래서 **격자와 타일 번호를 화면에 직접 그려 놓고** 개발했습니다.
+
 <div align="center">
 <br>
 <img src="assets/demos/map_tiling.gif" width="270" /><br>
 <sub>격자와 타일 번호를 화면에 직접 그려 검증하던 개발용 화면 · 실제 앱에는 나오지 않습니다</sub>
+<br><br>
 </div>
+
+<br>
 
 지도를 움직이면 화면에 걸치는 타일 번호가 바뀌고, 그중 **캐시에 없는 것만** 서버로 나갑니다. 하단의 "지도에 표시된 숙소 N개"는 타일 단위로 받아온 데이터 중 **실제 화면 다각형 안에 들어오는 것만** 센 값입니다. 요청은 넓게, 렌더링은 좁게.
 
@@ -350,9 +361,9 @@ flowchart TD
 
 붉은 종료 지점 셋이 이 구조의 핵심입니다. **가장 빠른 요청은 나가지 않는 요청**입니다.
 
-### 실기기에서 재본 결과
+### 직접 재본 결과
 
-말로만 하면 믿기 어려우니 직접 측정했습니다. **Galaxy S21+에서 지도를 16번 드래그**하며 로그를 수집했습니다.
+말로만 하면 믿기 어려우니 직접 측정했습니다. **지도를 16번 드래그**하며 로그를 수집했습니다.
 
 <div align="center">
 
@@ -496,9 +507,9 @@ main()
 
 필요한 동작이 원본 라이브러리에 없어서 포크해 고쳐 쓴 것들입니다.
 
-**[Flutter_Photoview_Custom](https://github.com/kiwijuse/Flutter_Photoview_Custom)** — 사진을 아래로 쓸어내려 닫는 제스처를 넣으려는데, 원본에는 **확대/축소가 끝나는 시점을 알려주는 콜백이 없었습니다.** 그게 없으면 "지금 사용자가 확대 중인지, 닫으려고 내리는 중인지"를 구분할 수 없습니다. 제스처 종료 콜백을 위젯 · 갤러리 · 코어까지 연결해 넣는 게 수정의 핵심이었습니다. 더불어 더블탭 확대와 갤러리 페이징 버그도 함께 고쳤습니다.
+**<a href="https://github.com/kiwijuse/Flutter_Photoview_Custom" target="_blank" rel="noopener">Flutter_Photoview_Custom</a>** — 사진을 아래로 쓸어내려 닫는 제스처를 넣으려는데, 원본에는 **확대/축소가 끝나는 시점을 알려주는 콜백이 없었습니다.** 그게 없으면 "지금 사용자가 확대 중인지, 닫으려고 내리는 중인지"를 구분할 수 없습니다. 제스처 종료 콜백을 위젯 · 갤러리 · 코어까지 연결해 넣는 게 수정의 핵심이었습니다. 더불어 더블탭 확대와 갤러리 페이징 버그도 함께 고쳤습니다.
 
-**[flutter_image_cropper_custom](https://github.com/kiwijuse/flutter_image_cropper_custom)** — 크롭 화면에서 상태바 아이콘이 어두운 배경에 묻혀 보이지 않던 문제를 고쳤습니다.
+**<a href="https://github.com/kiwijuse/flutter_image_cropper_custom" target="_blank" rel="noopener">flutter_image_cropper_custom</a>** — 크롭 화면에서 상태바 아이콘이 어두운 배경에 묻혀 보이지 않던 문제를 고쳤습니다.
 
 ---
 
@@ -514,9 +525,11 @@ main()
 
 **접근성을 처음부터 넣을 것입니다.** 작은 기기의 가독성을 지키려고 글자 크기를 고정했는데, 그 대가로 OS 글꼴 설정을 따르지 못합니다. 스크린 리더용 라벨도 없습니다. "터치 영역을 넓혀 실수를 줄였다"고 써 놓고 **화면을 볼 수 없는 사용자는 앱을 쓸 수 없었습니다.**
 
-**터졌을 때 알 수 있게 만들 것입니다.** 릴리스 빌드에 디버그 출력이 847개 남아 있었고 크래시 리포팅이 없었습니다. 토큰 갱신이 최종 실패했을 때 세션을 정리하는 자리도 비어 있었는데, **오래 남아 있었던 이유는 터져도 알 방법이 없었기 때문입니다.**
+**테스트를 쓸 것입니다.** 지금 이 프로젝트에는 자동화된 테스트가 없습니다.
 
-**테스트를 쓸 것입니다.** 프로젝트 생성 시 만들어진 템플릿 테스트가 그대로 남아 있습니다. 화면을 만드는 속도를 택했고, 그만큼 회귀를 사람이 잡아야 했습니다.
+없으면 어떻게 되냐면, **A를 고쳤을 때 B가 망가졌는지를 알 방법이 사람뿐**입니다. 예약 로직을 손보면 예약 화면만 확인하는 게 아니라 달력·일정·알림까지 직접 눌러봐야 합니다. 화면이 200개니까 그걸 전부 볼 수는 없고, 결국 "이 정도면 됐겠지" 하고 넘어갑니다. 그러다 엉뚱한 곳에서 문제가 나옵니다.
+
+테스트가 있으면 이 확인을 기계가 몇 초 만에 대신합니다. 당시에는 화면을 하나라도 더 만드는 쪽을 택했는데, 화면이 늘어날수록 **손으로 확인해야 할 양이 같이 늘어난다**는 걸 나중에 체감했습니다. 다음에는 처음부터 깔고 갈 것입니다.
 
 ---
 
@@ -526,12 +539,12 @@ main()
 
 | | |
 |---|---|
-| [상태 관리가 필요했던 순간: 변수에서 Provider로](https://yeohaenghage.kr/frontend/flutter_provider) | 화면 간 상태가 어긋나는 문제와 해결 |
-| [지도를 '그리지 않음'으로써 가장 빠른 지도를 그리는 법](https://yeohaenghage.kr/frontend/map_tiling) | 격자 설계 · 캐시 · 요청 억제 |
-| [모바일 앱 UI/UX 설계 가이드](https://yeohaenghage.kr/frontend/ux_navigation) | 인지 부하 · 체감 성능 · 터치 영역 |
-| [Flutter 아키텍처 딥다이브](https://yeohaenghage.kr/frontend/flutter_architecture) | 렌더링 구조 · Platform Channel · 백그라운드 |
+| <a href="https://yeohaenghage.kr/frontend/flutter_provider" target="_blank" rel="noopener">상태 관리가 필요했던 순간: 변수에서 Provider로</a> | 화면 간 상태가 어긋나는 문제와 해결 |
+| <a href="https://yeohaenghage.kr/frontend/map_tiling" target="_blank" rel="noopener">지도를 '그리지 않음'으로써 가장 빠른 지도를 그리는 법</a> | 격자 설계 · 캐시 · 요청 억제 |
+| <a href="https://yeohaenghage.kr/frontend/ux_navigation" target="_blank" rel="noopener">모바일 앱 UI/UX 설계 가이드</a> | 인지 부하 · 체감 성능 · 터치 영역 |
+| <a href="https://yeohaenghage.kr/frontend/flutter_architecture" target="_blank" rel="noopener">Flutter 아키텍처 딥다이브</a> | 렌더링 구조 · Platform Channel · 백그라운드 |
 
-서버 쪽 이야기는 [align-retrospective](https://github.com/pill27211/align-retrospective)에, 서비스 소개는 [yeohaenghage.com](https://yeohaenghage.com)에 있습니다.
+서버 쪽 이야기는 <a href="https://github.com/pill27211/align-retrospective" target="_blank" rel="noopener">align-retrospective</a>에, 서비스 소개는 <a href="https://yeohaenghage.com" target="_blank" rel="noopener">yeohaenghage.com</a>에 있습니다.
 
 ---
 
@@ -539,10 +552,10 @@ main()
 
 | | |
 |---|---|
-| **이진수** [@kiwijuse](https://github.com/kiwijuse) | **프론트엔드** — 앱 전 화면 구현 · 클라이언트 아키텍처 · API 연동 |
+| **이진수** <a href="https://github.com/kiwijuse" target="_blank" rel="noopener">@kiwijuse</a> | **프론트엔드** — 앱 전 화면 구현 · 클라이언트 아키텍처 · API 연동 |
 | **남궁찬** | 기획 · 디자인 · 마케팅 (팀 대표) |
-| [@pill27211](https://github.com/pill27211) | 백엔드 · 인프라 |
-| [@Namhunk](https://github.com/Namhunk) | QA |
+| <a href="https://github.com/pill27211" target="_blank" rel="noopener">@pill27211</a> | 백엔드 · 인프라 |
+| <a href="https://github.com/Namhunk" target="_blank" rel="noopener">@Namhunk</a> | QA |
 
 사업자 등록과 법적 절차를 마치고 앱 출시 단계까지 갔지만, 실서비스 직전에 마무리되지 못했습니다. 그래도 19개월 동안 화면 200개를 실제로 굴러가게 만들어 본 경험이 남았습니다.
 
