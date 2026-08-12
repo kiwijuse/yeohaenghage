@@ -255,14 +255,15 @@
 <br>
 <table>
 <tr>
+<td align="center" width="25%"><img src="assets/screens/start.png" width="165" /><br><sub><b>시작</b><br>게스트 · 호스트 갈림길</sub></td>
 <td align="center" width="25%"><img src="assets/screens/login.png" width="165" /><br><sub><b>로그인</b><br>카카오 · 네이버 · 구글 · 애플</sub></td>
-<td align="center" width="25%"><img src="assets/screens/signup_nick.png" width="165" /><br><sub><b>회원가입</b><br>인증 · 약관 · 닉네임</sub></td>
 <td align="center" width="25%"><img src="assets/screens/profile_menu.png" width="165" /><br><sub><b>내 정보</b><br>쿠폰 · 찜 · 방명록 · 설정</sub></td>
 <td align="center" width="25%"><img src="assets/screens/app_info.png" width="165" /><br><sub><b>정보</b><br>약관 · 오픈소스 · 버전</sub></td>
 </tr>
 <tr>
+<td align="center"><img src="assets/screens/signup_nick.png" width="165" /><br><sub><b>회원가입</b><br>인증 · 약관 · 닉네임</sub></td>
 <td align="center"><img src="assets/screens/house_manage.png" width="165" /><br><sub><b>숙소 정보 관리</b></sub></td>
-<td align="center" colspan="3"><sub>호스트 콘솔은 화면이 80개가 넘어 일부만 실었습니다. 숙소 등록 마법사와 정산 화면은 <a href="#호스트가-된다">위쪽 GIF</a>에서 볼 수 있습니다.</sub></td>
+<td align="center" colspan="2"><sub>호스트 콘솔은 화면이 80개가 넘어 일부만 실었습니다. 숙소 등록 마법사와 정산 화면은 <a href="#호스트가-된다">위쪽 GIF</a>에서 볼 수 있습니다.</sub></td>
 </tr>
 <tr>
 <td align="center"><img src="assets/screens/room_capacity.png" width="165" /><br><sub><b>객실 설정</b><br>이용 가능 성별 · 수용 인원</sub></td>
@@ -298,6 +299,11 @@
 <td>사진 올리다 앱을 나가면 처음부터 다시</td>
 <td>업로드가 <b>앱 생명주기에 묶여</b> 있었다</td>
 <td>포그라운드 태스크로 분리 · <b>큐를 디스크에 저장</b>해 강제 종료 후에도 이어서<br>→ <a href="docs/06-background-upload.md">자세히</a></td>
+</tr>
+<tr>
+<td>같은 품질로 압축했는데 어떤 사진은 흐리고 어떤 사진은 용량 초과</td>
+<td>사진마다 복잡도가 달라 <b>고정 품질은 답이 될 수 없었다</b></td>
+<td>품질 20~95 구간을 <b>이분 탐색</b>해 목표 용량을 넘지 않는 최고 품질을 사진마다 결정 · 최대 7회<br>→ <a href="docs/06-background-upload.md#04--올리기-전에-줄이기">자세히</a></td>
 </tr>
 <tr>
 <td>지하철에서 보낸 메시지가 사라진다</td>
@@ -477,7 +483,8 @@ main()
 | **저장** | SQLite · SharedPreferences · 이미지 캐시 |
 | **지도 · 위치** | Kakao Map SDK · Google Maps · Geolocator |
 | **인증** | Firebase Auth · 카카오 · 네이버 · 구글 · 애플 |
-| **결제** | Toss Payments (WebView) · PortOne 본인인증 |
+| **결제** | Toss Payments 결제위젯 v2 (WebView) |
+| **문자 인증** | Solapi (휴대폰 번호 인증) |
 | **미디어** | 이미지 압축 · 에셋 피커 · 직접 포크한 뷰어/크로퍼 |
 | **알림 · 백그라운드** | FCM · 로컬 알림 · 포그라운드 태스크 |
 
