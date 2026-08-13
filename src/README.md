@@ -11,7 +11,6 @@
 |---|---|---|
 | [`api_client.dart`](./api_client.dart) | 토큰 만료가 동시에 터질 때 리프레시 요청이 N번 나가는 문제 | [04-api-client](../docs/04-api-client.md) |
 | [`map_tiling.dart`](./map_tiling.dart) | 지도를 드래그할 때마다 서버를 때리는 문제 | [02-map-tiling](../docs/02-map-tiling.md) |
-| [`design_function.dart`](./design_function.dart) | 디자인 시안 크기를 실제 기기 화면에 맞추는 문제 | [07-design-system](../docs/07-design-system.md) |
 | [`providers/`](./providers) | 화면 A에서 바꾼 값이 화면 B에 반영되지 않는 문제 | [03-state-management](../docs/03-state-management.md) |
 
 ## 원본과 달라진 점

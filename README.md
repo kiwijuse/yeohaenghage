@@ -27,16 +27,18 @@
 > [!NOTE]
 > **프론트엔드를 맡은 사람이 쓴 회고입니다.**
 > 상용·팀 프로젝트라 앱 소스 전체는 담지 않았고, 설계 의도가 드러나는 부분만 시크릿을 걷어내고 발췌했습니다.
-> 같은 프로젝트의 서버 이야기는 <a href="https://github.com/pill27211/align-retrospective" target="_blank" rel="noopener">pill27211/align-retrospective</a>에 따로 있습니다.
+> 같은 프로젝트의 서버 이야기는 [pill27211/align-retrospective](https://github.com/pill27211/align-retrospective)에 따로 있습니다.
 
 ---
 
 ## 앱을 열면
 
-화면을 나열하는 대신 **사용자가 지나가는 순서대로** 따라가 보겠습니다.
+앱을 처음 켠 사람이 **어떤 순서로 화면을 지나가는지** 그대로 따라가 보겠습니다. 각 화면에서 무엇을 고민했는지도 함께 적었습니다.
 
 > [!NOTE]
-> 일부 화면은 재연을 위해 목 서버를 붙여 다시 띄운 뒤 촬영했습니다.
+> 프로젝트가 멈추면서 서버도 함께 내려가, 지금은 앱을 켜도 데이터가 오지 않습니다.
+> 그래서 화면을 다시 보여줄 수 있도록 **앱이 서버에 보내는 요청을 가로채 준비된 응답을 돌려주는 목 서버를 붙이고**, 실제 기기에서 앱을 띄워 촬영했습니다.
+> 아래 화면 상당수가 그렇게 재연한 것이고, 나머지는 서비스가 살아 있던 시기에 남겨둔 녹화본과 디자인 원본입니다.
 
 ### 처음 만나는 화면
 
@@ -507,9 +509,9 @@ main()
 
 필요한 동작이 원본 라이브러리에 없어서 포크해 고쳐 쓴 것들입니다.
 
-**<a href="https://github.com/kiwijuse/Flutter_Photoview_Custom" target="_blank" rel="noopener">Flutter_Photoview_Custom</a>** — 사진을 아래로 쓸어내려 닫는 제스처를 넣으려는데, 원본에는 **확대/축소가 끝나는 시점을 알려주는 콜백이 없었습니다.** 그게 없으면 "지금 사용자가 확대 중인지, 닫으려고 내리는 중인지"를 구분할 수 없습니다. 제스처 종료 콜백을 위젯 · 갤러리 · 코어까지 연결해 넣는 게 수정의 핵심이었습니다. 더불어 더블탭 확대와 갤러리 페이징 버그도 함께 고쳤습니다.
+**[Flutter_Photoview_Custom](https://github.com/kiwijuse/Flutter_Photoview_Custom)** — 사진을 아래로 쓸어내려 닫는 제스처를 넣으려는데, 원본에는 **확대/축소가 끝나는 시점을 알려주는 콜백이 없었습니다.** 그게 없으면 "지금 사용자가 확대 중인지, 닫으려고 내리는 중인지"를 구분할 수 없습니다. 제스처 종료 콜백을 위젯 · 갤러리 · 코어까지 연결해 넣는 게 수정의 핵심이었습니다. 더불어 더블탭 확대와 갤러리 페이징 버그도 함께 고쳤습니다.
 
-**<a href="https://github.com/kiwijuse/flutter_image_cropper_custom" target="_blank" rel="noopener">flutter_image_cropper_custom</a>** — 크롭 화면에서 상태바 아이콘이 어두운 배경에 묻혀 보이지 않던 문제를 고쳤습니다.
+**[flutter_image_cropper_custom](https://github.com/kiwijuse/flutter_image_cropper_custom)** — 크롭 화면에서 상태바 아이콘이 어두운 배경에 묻혀 보이지 않던 문제를 고쳤습니다.
 
 ---
 
@@ -519,11 +521,9 @@ main()
 
 **공통 컴포넌트를 먼저 뽑을 것입니다.** 버튼 · 앱바 · 바텀시트를 화면마다 다시 선언했습니다. 초반엔 빨랐지만 화면이 100개를 넘어가면서 디자인이 한 번 바뀔 때마다 수십 곳을 고쳐야 했습니다. 호스트 이벤트 등록 화면 네 개는 서로 거의 같은 코드가 각각 1,300줄씩 들어 있습니다. **15만 줄이라는 숫자는 규모의 증거가 아니라 이 부채의 크기입니다.** 화면 열 개쯤 만든 시점이 가장 싸고, 그 이후로는 계속 비싸집니다.
 
-**크기에 적용한 원칙을 색에도 적용할 것입니다.** 화면 비율은 함수로 정리해 뒀으면서, 정작 색은 `Color(0xFF228B22)`를 쓰는 자리마다 직접 적었습니다. 같은 문제를 한쪽만 푼 셈입니다.
+**정한 규칙이 지켜지는지 확인할 것입니다.** 시안 크기를 환산하는 함수를 초반에 만들어 뒀는데, 실제로는 거의 쓰이지 않았습니다. 화면 대부분은 `MediaQuery`나 고정 픽셀값으로 만들어졌고, 결국 크기를 정하는 방식이 세 가지로 갈렸습니다. 색도 마찬가지로 `Color(0xFF228B22)`를 쓰는 자리마다 직접 적었습니다. **규칙은 만드는 순간이 아니라 지켜지기 시작하는 순간부터 규칙입니다.** → [디자인 시스템](docs/07-design-system.md)
 
-**환산 기준을 하나로 유지할 것입니다.** 초기 기준(390×779)과 온보딩용으로 추가한 기준(390×844)이 끝까지 공존했습니다. 개선된 방식을 만들어 놓고 옛 방식과 나란히 두는 게 가장 나쁜 결과였습니다.
-
-**접근성을 처음부터 넣을 것입니다.** 작은 기기의 가독성을 지키려고 글자 크기를 고정했는데, 그 대가로 OS 글꼴 설정을 따르지 못합니다. 스크린 리더용 라벨도 없습니다. "터치 영역을 넓혀 실수를 줄였다"고 써 놓고 **화면을 볼 수 없는 사용자는 앱을 쓸 수 없었습니다.**
+**접근성을 처음부터 넣을 것입니다.** 스크린 리더가 읽을 라벨을 이미지와 아이콘에 붙이지 않았습니다. "터치 영역을 넓혀 실수를 줄였다"고 써 놓고 **화면을 볼 수 없는 사용자는 앱을 쓸 수 없었습니다.**
 
 **테스트를 쓸 것입니다.** 지금 이 프로젝트에는 자동화된 테스트가 없습니다.
 
@@ -539,12 +539,12 @@ main()
 
 | | |
 |---|---|
-| <a href="https://yeohaenghage.kr/frontend/flutter_provider" target="_blank" rel="noopener">상태 관리가 필요했던 순간: 변수에서 Provider로</a> | 화면 간 상태가 어긋나는 문제와 해결 |
-| <a href="https://yeohaenghage.kr/frontend/map_tiling" target="_blank" rel="noopener">지도를 '그리지 않음'으로써 가장 빠른 지도를 그리는 법</a> | 격자 설계 · 캐시 · 요청 억제 |
-| <a href="https://yeohaenghage.kr/frontend/ux_navigation" target="_blank" rel="noopener">모바일 앱 UI/UX 설계 가이드</a> | 인지 부하 · 체감 성능 · 터치 영역 |
-| <a href="https://yeohaenghage.kr/frontend/flutter_architecture" target="_blank" rel="noopener">Flutter 아키텍처 딥다이브</a> | 렌더링 구조 · Platform Channel · 백그라운드 |
+| [상태 관리가 필요했던 순간: 변수에서 Provider로](https://yeohaenghage.kr/frontend/flutter_provider) | 화면 간 상태가 어긋나는 문제와 해결 |
+| [지도를 '그리지 않음'으로써 가장 빠른 지도를 그리는 법](https://yeohaenghage.kr/frontend/map_tiling) | 격자 설계 · 캐시 · 요청 억제 |
+| [모바일 앱 UI/UX 설계 가이드](https://yeohaenghage.kr/frontend/ux_navigation) | 인지 부하 · 체감 성능 · 터치 영역 |
+| [Flutter 아키텍처 딥다이브](https://yeohaenghage.kr/frontend/flutter_architecture) | 렌더링 구조 · Platform Channel · 백그라운드 |
 
-서버 쪽 이야기는 <a href="https://github.com/pill27211/align-retrospective" target="_blank" rel="noopener">align-retrospective</a>에, 서비스 소개는 <a href="https://yeohaenghage.com" target="_blank" rel="noopener">yeohaenghage.com</a>에 있습니다.
+서버 쪽 이야기는 [align-retrospective](https://github.com/pill27211/align-retrospective)에, 서비스 소개는 [yeohaenghage.com](https://yeohaenghage.com)에 있습니다.
 
 ---
 
@@ -552,10 +552,10 @@ main()
 
 | | |
 |---|---|
-| **이진수** <a href="https://github.com/kiwijuse" target="_blank" rel="noopener">@kiwijuse</a> | **프론트엔드** — 앱 전 화면 구현 · 클라이언트 아키텍처 · API 연동 |
+| **이진수** [@kiwijuse](https://github.com/kiwijuse) | **프론트엔드** — 앱 전 화면 구현 · 클라이언트 아키텍처 · API 연동 |
 | **남궁찬** | 기획 · 디자인 · 마케팅 (팀 대표) |
-| <a href="https://github.com/pill27211" target="_blank" rel="noopener">@pill27211</a> | 백엔드 · 인프라 |
-| <a href="https://github.com/Namhunk" target="_blank" rel="noopener">@Namhunk</a> | QA |
+| [@pill27211](https://github.com/pill27211) | 백엔드 · 인프라 |
+| [@Namhunk](https://github.com/Namhunk) | QA |
 
 사업자 등록과 법적 절차를 마치고 앱 출시 단계까지 갔지만, 실서비스 직전에 마무리되지 못했습니다. 그래도 19개월 동안 화면 200개를 실제로 굴러가게 만들어 본 경험이 남았습니다.
 
@@ -564,5 +564,7 @@ main()
 <div align="center">
 <sub>상용 · 팀 프로젝트의 프론트엔드 회고이며, 서비스 소스 전체를 포함하지 않습니다.</sub>
 </div>
+
+<br>
 
 ---
