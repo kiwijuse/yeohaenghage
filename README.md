@@ -543,7 +543,7 @@ main()
 | [모바일 앱 UI/UX 설계 가이드](https://yeohaenghage.kr/frontend/ux_navigation) | 인지 부하 · 체감 성능 · 터치 영역 |
 | [Flutter 아키텍처 딥다이브](https://yeohaenghage.kr/frontend/flutter_architecture) | 렌더링 구조 · Platform Channel · 백그라운드 |
 
-서버 쪽 이야기는 [align-retrospective](https://github.com/pill27211/align-retrospective)에, 서비스 소개는 [yeohaenghage.com](https://yeohaenghage.com)에 있습니다.
+위 글들은 팀 기술 블로그 [yeohaenghage.kr](https://yeohaenghage.kr/)에 있습니다. 프론트엔드 외에 백엔드 · 인프라 · 디자인 · 브랜딩 글도 함께 올려 두었습니다. 서버 쪽 회고는 [align-retrospective](https://github.com/pill27211/align-retrospective)에 따로 있습니다.
 
 ---
 
