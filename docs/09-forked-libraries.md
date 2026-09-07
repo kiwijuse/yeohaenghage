@@ -1,6 +1,6 @@
 # 라이브러리를 포크한 이야기
 
-> 남의 코드를 열어 고쳐 쓴 두 번 · 그중 한 번은 안 해도 됐을 일
+> 없는 기능을 만들어 넣고, 손가락 떨림 때문에 죽던 제스처를 되살린 이야기
 
 [← 목록으로](../README.md#깊이-들어간-이야기)
 
@@ -142,7 +142,76 @@ onVerticalDragStart: (details) {
 
 ---
 
-## 06 · 두 번째 포크 — Dart에서 사라진 손잡이
+## 06 · 정확히 같은 자리를 눌러야 먹히던 더블탭
+
+사진을 두 번 두드리면 확대되는 동작이 있습니다. 그런데 잘 안 됐습니다.
+
+되긴 되는데 **손가락을 아주 가만히 두고 정확히 같은 자리를 눌러야** 했습니다. 조금이라도 흔들리면 아무 일도 일어나지 않습니다. 될 때도 있고 안 될 때도 있으니 버그로 잡기도 애매했습니다.
+
+<div align="center">
+<img src="../assets/demos/photo_doubletap.gif" width="260" /><br>
+<sub>고친 뒤 · 손가락이 살짝 흔들리는 탭으로 찍었습니다</sub>
+</div>
+
+<br>
+
+### 왜 그랬나
+
+화면 하나에 제스처 인식기가 여럿 붙어 있습니다. 두 번 두드리기를 보는 쪽과, 손가락을 벌려 확대하는 쪽이 같은 터치를 동시에 지켜봅니다. 둘 중 하나가 "이건 내 제스처다"라고 선언하면 나머지는 물러납니다.
+
+확대 인식기가 너무 일찍 손을 드는 게 문제였습니다. 원본 코드는 이랬습니다.
+
+```dart
+void _decideIfWeAcceptEvent(PointerEvent event) {
+  if (!(event is PointerMoveEvent)) {
+    return;
+  }
+  final move = _initialFocalPoint! - _currentFocalPoint!;
+  final bool shouldMove = hitDetector!.shouldMove(move, validateAxis!);
+  if (shouldMove || _pointerLocations.keys.length > 1) {
+    acceptGesture(event.pointer);   // 여기서 제스처를 가져간다
+  }
+}
+```
+
+손가락이 움직였다는 신호가 오면 곧바로 확대 제스처로 확정합니다. 그런데 사람의 손가락은 화면에 닿는 순간에도 가만히 있지 않습니다. 누르고 떼는 사이에 몇 픽셀씩 미세하게 흔들립니다. 그 흔들림이 "움직였다"로 잡히면서 확대 인식기가 제스처를 가져가 버리고, 두 번째 탭은 두드리기 인식기에 도달하지 못합니다.
+
+그래서 미동 없이 누른 사람에게만 더블탭이 먹혔던 겁니다.
+
+### 무엇을 고쳤나
+
+누른 자리를 기억해 두고, **거기서 얼마 안 움직였으면 움직이지 않은 것으로 친다**는 규칙을 넣었습니다.
+
+```dart
+if (event is PointerDownEvent) {
+  _tabDown = event.position;      // 누른 자리를 기억한다
+  return;
+}
+
+if (event is PointerMoveEvent) {
+  final double distance = (_tabDown! - event.position).distance;
+
+  const double doubleTapThreshold = 10.0;
+  if (distance <= doubleTapThreshold) {
+    return;                       // 이 정도는 흔들린 것이지 움직인 게 아니다
+  }
+
+  final move = _initialFocalPoint! - _currentFocalPoint!;
+  final bool shouldMove = hitDetector?.shouldMove(move, validateAxis!) ?? false;
+  if (shouldMove || _pointerLocations.keys.length > 1) {
+    acceptGesture(event.pointer);
+  }
+}
+```
+
+10픽셀 안쪽의 움직임은 무시합니다. 확대 인식기가 그만큼 늦게 손을 들게 되니, 그 사이에 두 번째 탭이 도착해 더블탭이 성립합니다.
+
+> [!NOTE]
+> 이런 여유값은 Flutter가 이미 쓰고 있습니다. 스크롤을 시작할지 판단하는 기준값 `kTouchSlop`이 18입니다. 그 값을 몰라서 10을 손으로 정했는데, 결과적으로 같은 종류의 판단이었습니다.
+
+---
+
+## 07 · 두 번째 포크 — Dart에서 사라진 손잡이
 
 프로필 사진을 등록할 때 `image_cropper`로 정사각형을 잘라 냅니다. 안드로이드에서는 이 플러그인이 uCrop이라는 네이티브 화면을 띄웁니다.
 
@@ -183,7 +252,7 @@ Dart에서 넘어온 설정을 적용하기 **전에** 두었습니다. 나중�
 
 열어 보니 그냥 남이 쓴 코드였습니다. 이 갤러리를 만든 사람은 좌우로 넘기는 것까지 만들었고, 세로로 내려 닫는 건 필요하지 않았을 뿐입니다. 잘못 만든 코드가 아니었습니다. 거기까지였던 겁니다.
 
-그리고 고칠 곳을 찾는 데 걸린 시간이 실제로 고치는 시간보다 훨씬 길었습니다. 최종 수정은 파일 하나에 들어갔지만, 거기가 고칠 자리라는 걸 알기까지 확대 배율이 어디서 어디로 흐르는지를 먼저 읽어야 했습니다. 읽는 게 일이고 쓰는 건 그다음이었습니다.
+그리고 고칠 곳을 찾는 데 걸린 시간이 실제로 고치는 시간보다 훨씬 길었습니다. 최종 수정은 파일 두 개에 들어갔지만, 거기가 고칠 자리라는 걸 알기까지 확대 배율이 어디서 어디로 흐르는지, 제스처를 누가 먼저 가져가는지를 먼저 읽어야 했습니다. 읽는 게 일이고 쓰는 건 그다음이었습니다.
 
 ---
 
