@@ -211,7 +211,50 @@ if (event is PointerMoveEvent) {
 
 ---
 
-## 07 · 두 번째 포크 — Dart에서 사라진 손잡이
+## 07 · 검은 화면에 흰 내비게이션 바
+
+포크 저장소에 "갤러리 버그 수정"이라고만 적어 둔 것이 둘 있는데, 하나는 [앞에서 다룬 확대 중 페이지 넘김](#04--값-하나가-세-곳을-가른다)이고 나머지가 이것입니다.
+
+사진 뷰어는 배경이 검습니다. 그런데 화면 아래 시스템 내비게이션 바는 흰색 그대로였습니다. 사진을 보는 내내 아래쪽에 흰 띠가 남아 있는 셈입니다.
+
+갤러리가 뜰 때 시스템 바를 검게 맞추고, 나갈 때 원래대로 되돌리도록 했습니다.
+
+```dart
+static Future<void> setPhotoViewMode() async {
+  await SystemChrome.setEnabledSystemUIMode(
+    SystemUiMode.manual,
+    overlays: [SystemUiOverlay.bottom],
+  );
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle.light.copyWith(
+      statusBarColor: Colors.transparent,
+      systemNavigationBarColor: Colors.black,
+      systemNavigationBarIconBrightness: Brightness.light,
+    ),
+  );
+}
+```
+
+첫 프레임이 그려진 뒤에 부릅니다. `initState`에서 바로 부르면 아직 화면이 붙기 전이라 적용이 밀립니다.
+
+라이브러리가 앱의 시스템 바 색을 건드리는 건 원래 넘지 말아야 할 선입니다. 뷰어를 닫을 때 반드시 원래대로 돌려놓는다는 조건에서만 허용되는 일인데, 그 되돌리는 부분이 실제로는 동작하지 않습니다.
+
+```dart
+@override
+void dispose() {
+  _animationController.dispose();
+  FirstsetMode;        // 괄호가 없다 — 함수를 가리키기만 하고 부르지는 않는다
+  super.dispose();
+}
+```
+
+Dart에서 함수 이름만 적으면 그 함수를 가리키는 값이 될 뿐 호출되지 않습니다. 경고도 안 뜹니다. 증상이 없었던 건 앱이 사진 뷰어 화면에서 같은 일을 따로 해 주고 있었기 때문입니다. 앱이 대신 막아 주고 있어서 몇 달 동안 아무도 몰랐습니다.
+
+포크한 코드는 아무도 리뷰하지 않는다는 걸 여기서 봤습니다.
+
+---
+
+## 08 · 두 번째 포크 — Dart에서 사라진 손잡이
 
 프로필 사진을 등록할 때 `image_cropper`로 정사각형을 잘라 냅니다. 안드로이드에서는 이 플러그인이 uCrop이라는 네이티브 화면을 띄웁니다.
 
